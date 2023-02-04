@@ -14,7 +14,7 @@ for i in range(len(qmzxbody)):
     headers = {
         'Host': 'api.qiumeiapp.com',
         'Content-Type': 'application/json',
-        'appVersion': '7.2.0',
+        'appVersion': '8.1.1',
         'Content-Length': '425',
         'Connection': 'keep-alive',
         'Accept': '*/*',
