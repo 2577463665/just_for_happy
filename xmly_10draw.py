@@ -15,7 +15,6 @@ for i in range(2):
     html = requests.post(url=url, headers=headers, data=data)
     result = json.loads(html.text)
     print(result)
-    time.sleep(5)
     url2 = 'https://m.ximalaya.com/x-web-activity/draw/activity/receivingPercentAward'
     html2 = requests.post(url=url2, headers=headers, data=data)
     result2 = json.loads(html2.text)
