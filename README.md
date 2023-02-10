@@ -6,8 +6,6 @@
 <a href="https://github.com/wd210010/just_for_happy/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/wd210010/just_for_happy?color=red&style=flat-square"></a>
 <a href="https://t.me/wd210010_1"><img alt="Telegram" src="https://img.shields.io/badge/chat-telegram-blue.svg?logo=telegram&style=flat-square"/></a>
 [![Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=0088cc)](https://t.me/+XSi9N-Nf3cFhODJl)
-	    <iframe width="300" scrolling="no" height="30" frameborder="0" allowtransparency="true" src="http://i.tianqi.com/index.php?c=code&id=34&icon=1&num=3"></iframe>
-
 </div>
 
 
