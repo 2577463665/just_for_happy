@@ -5,7 +5,7 @@
 <a href="https://github.com/wd210010/just_for_happy/network/members"><img alt="GitHub forks" src="https://img.shields.io/github/forks/wd210010/just_for_happy?color=orange&style=flat-square"></a>
 <a href="https://github.com/wd210010/just_for_happy/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/wd210010/just_for_happy?color=red&style=flat-square"></a>
 <a href="https://t.me/wd210010_1"><img alt="Telegram" src="https://img.shields.io/badge/chat-telegram-blue.svg?logo=telegram&style=flat-square"/></a>
-[![Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=0088cc)](https://t.me/XAutoDailyChat)
+[![Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=0088cc)](https://t.me/+XSi9N-Nf3cFhODJl)
 </div>
 
 本仓库发布的脚本及其中涉及的任何解密分析脚本，仅用于测试和学习研究，禁止用于商业用途，不能保证其合法性，准确性，完整性和有效性，请根据情况自行判断。
