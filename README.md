@@ -1,5 +1,5 @@
 <div align="center">
-<h1 align="center"># 自用签到学习脚本 仅供学习 来了点个小星星☆</h1>
+<h1 align="center">自用学习脚本 仅供学习 来了点个小星星☆</h1>
 
 <a href="https://github.com/OreosLab/checkinpanel/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/OreosLab/checkinpanel?color=yellow&logo=riseup&logoColor=yellow&style=flat-square"></a>
 <a href="https://github.com/OreosLab/checkinpanel/network/members"><img alt="GitHub forks" src="https://img.shields.io/github/forks/OreosLab/checkinpanel?color=orange&style=flat-square"></a>
