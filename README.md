@@ -1,4 +1,15 @@
-# 自用签到学习脚本 仅供学习 来都来了点个小星星☆
+<div align="center">
+<h1 align="center"># 自用签到学习脚本 仅供学习 来了点个小星星☆</h1>
+
+<a href="https://github.com/OreosLab/checkinpanel/stargazers"><img alt="GitHub Repo stars" src="https://img.shields.io/github/stars/OreosLab/checkinpanel?color=yellow&logo=riseup&logoColor=yellow&style=flat-square"></a>
+<a href="https://github.com/OreosLab/checkinpanel/network/members"><img alt="GitHub forks" src="https://img.shields.io/github/forks/OreosLab/checkinpanel?color=orange&style=flat-square"></a>
+<a href="https://github.com/OreosLab/checkinpanel/issues"><img alt="GitHub issues" src="https://img.shields.io/github/issues/OreosLab/checkinpanel?color=red&style=flat-square"></a>
+<a href="https://t.me/joinchat/muGNhnaZglQ0N2Q1"><img alt="Telegram" src="https://img.shields.io/badge/chat-telegram-blue.svg?logo=telegram&style=flat-square"/></a>
+<a href="https://github.com/OreosLab/checkinpanel/search?l=python"><img alt="GitHub code size in bytes" src="https://img.shields.io/github/languages/code-size/OreosLab/checkinpanel?color=blueviolet&logo=visual%20studio%20code&logoColor=informational&style=flat-square"></a>
+<a href="https://github.com/psf/black"><img alt="Code style: black" src="https://img.shields.io/badge/code%20style-black-000000.svg?logo=python&style=flat-square"/></a>
+<a href="https://scrutinizer-ci.com/g/OreosLab/checkinpanel/?branch=master"><img alt="Scrutinizer code quality (GitHub/Bitbucket)" src="https://img.shields.io/scrutinizer/quality/g/OreosLab/checkinpanel?logo=Scrutinizer&style=flat-square"></a>
+<a href="https://github.com/OreosLab/checkinpanel/commits"><img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/OreosLab/checkinpanel?color=success&logo=github&style=flat-square"/></a>
+</div>
 
 本仓库发布的脚本及其中涉及的任何解密分析脚本，仅用于测试和学习研究，禁止用于商业用途，不能保证其合法性，准确性，完整性和有效性，请根据情况自行判断。
 本项目内所有资源文件，禁止任何公众号、自媒体进行任何形式的转载、发布。
