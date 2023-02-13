@@ -1,15 +1,43 @@
-import requests, json,time
+import requests, json,time,re
 
 # 逑美在线app 可以完成签到和抽卡人任务
 # qmzxbody取app登录(使用帐号密码登录)界面登录后的https://api.qiumeiapp.com/qm/10001/qmLogin URL的请求body全部 放到单引号里面 多账号支持
 # 示例'{"deviceNumber":"*****","anonymousId":"*****","appVersion":"7.2.1","appMarket":"appstore","password":"*****","deviceModel":"iPhone14,5","sign":"******","deviceToken":"*****==","phoneNumber":"*****"}',
+
 qmzxbody = [
-'',
-''
+    '',
+    '',
+    ''
 ]
-# print(result)
+
+# 企业微信推送参数
+corpid = ''
+agentid = ''
+corpsecret = ''
+touser = ''
+# 推送加 token
+plustoken = ''
+
+def Push(contents):
+    # 微信推送
+    if all([corpid, agentid, corpsecret, touser]):
+        token = \
+        requests.get(f'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={corpid}&corpsecret={corpsecret}').json()[
+            'access_token']
+        json = {"touser": touser, "msgtype": "text", "agentid": agentid, "text": {"content": "逑美在线集卡推送\n" + contents}}
+        resp = requests.post(f"https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={token}", json=json)
+        print('微信推送成功' if resp.json()['errmsg'] == 'ok' else '微信推送失败')
+
+    if plustoken:
+        headers = {'Content-Type': 'application/json'}
+        json = {"token": plustoken, 'title': '逑美在线集卡推送', 'content': contents.replace('\n', '<br>'), "template": "json"}
+        resp = requests.post(f'http://www.pushplus.plus/send', json=json, headers=headers).json()
+        print('push+推送成功' if resp['code'] == 200 else 'push+推送失败')
+
 # 获取token
 for i in range(len(qmzxbody)):
+    sign = "".join(re.findall('"sign":"(.*?)"', qmzxbody[i], re.S))
+    # print(sign)
     url = 'https://api.qiumeiapp.com/qm/10001/qmLogin'
     headers = {
         'Host': 'api.qiumeiapp.com',
@@ -57,15 +85,32 @@ for i in range(len(qmzxbody)):
     data_2 = json.loads(html_2.text)
     print(data_2['msg'])
 
+    # url_r ='https://api.qiumeiapp.com/qm/10005/qmAchievePointChannel'
+    # data_r ={
+    #     "channelCode":"READ_CONTENT",
+    #     "sign":f"{sign}",
+    #     "qmUserToken":f"{qmUserToken}"
+    # }
+    # html_r =requests.post(url=url_r, headers=headers, data=data_r).text
+    # print(html_r)
 
     url_user ='https://api.qiumeiapp.com/qmxcx/10001/getQmUserPointInfo'
     url_run ='https://api.qiumeiapp.com/qm-activity/qdcj/getUserSigninInfo'
+    url_c ='https://api.qiumeiapp.com/qm-activity/hc/getUserMaterialList'
     token = f'appUserToken={qmUserToken}'
     html_user = requests.post(url=url_user, headers=headers, data=token)
     html_run = requests.post(url=url_run, headers=headers, data=data)
+    html_c = requests.post(url=url_c, headers=headers, data=data)
     data_4 = json.loads(html_user.text)
     data_5 = json.loads(html_run.text)
+    data_6 = json.loads(html_c.text)['data']['materialList']
     print('本月登录天数: ' + str(data_5['data']['runningDays']) +' 豆豆余额: '+str(data_4['data']['totalAmount']))
+    for aa in range(len(data_6)) :
+        print(str(data_6[aa]['materialName'])+': '+str(data_6[aa]['haveCount'])+'/1')
+        if str(data_6[aa]['materialName'])=="紧致卡" and data_6[aa]['haveCount'] ==1:
+            massage1 ='可能集齐了去看看！！！'
+            Push(contents=massage1)
+        elif str(data_6[aa]['materialName'])=="全能卡" and data_6[aa]['haveCount'] ==1:
+            massage2 ='可能集齐了去看看！！！'
+            Push(contents=massage2)
     print('*****')
-print("共"+str(len(qmzxbody))+"个帐号已经执行完毕,等待300秒关闭本窗口！！！")
-time.sleep(300)
