@@ -4,6 +4,33 @@ import requests,time,hashlib,json
 deviceParams=['deviceParams1','deviceParams2']
 token =['token1','token2']
 
+# 企业微信推送参数
+corpid = ''
+agentid = ''
+corpsecret = ''
+touser = ''
+# 推送加 token
+plustoken = ''
+
+def Push(contents):
+  # 微信推送
+  if all([corpid, agentid, corpsecret, touser]):
+    token = \
+      requests.get(
+        f'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={corpid}&corpsecret={corpsecret}').json()[
+        'access_token']
+    json = {"touser": touser, "msgtype": "text", "agentid": agentid, "text": {"content": "一点万向签到\n" + contents}}
+    resp = requests.post(f"https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={token}", json=json)
+    print('微信推送成功' if resp.json()['errmsg'] == 'ok' else '微信推送失败')
+
+  if plustoken:
+    headers = {'Content-Type': 'application/json'}
+    json = {"token": plustoken, 'title': '一点万向签到', 'content': contents.replace('\n', '<br>'), "template": "json"}
+    resp = requests.post(f'http://www.pushplus.plus/send', json=json, headers=headers).json()
+    print('push+推送成功' if resp['code'] == 200 else 'push+推送失败')
+
+
+
 print(f'共配置了{len(deviceParams)}个账号')
 for i in range(len(deviceParams)):
   print(f'*****第{str(i+1)}个账号*****')
@@ -32,3 +59,4 @@ for i in range(len(deviceParams)):
   html = requests.post(url=url,headers=headers,data=data)
   result = json.loads(html.text)['message']
   print(result)
+  Push(contents=result)
