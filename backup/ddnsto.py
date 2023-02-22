@@ -1,0 +1,92 @@
+import requests, json,uuid,datetime
+from datetime import datetime
+from datetime import timedelta
+
+# 配置参数 登录https://www.ddnsto.com/app/#/devices 抓包cookie
+cookie='ksuser=580859f6-d483-4258-8fb1-ad4796c635f4; csrftoken=ZMzrq1DCB1aZuQThLsQkse1sWO6ARUc3hMd99yCbHrAJOWU23w8D6djAQNgMg8IK; sessionid=7xsxmcazlelv9ui823jdp84w16aeik9p; Hm_lvt_5f1bc900ab954d0d1e03eb7f29aba601=1673311784,1673339141,1673485875,1673573124; Hm_lpvt_5f1bc900ab954d0d1e03eb7f29aba601=1673573137'
+# 先购买一次7天免费套餐 抓包查看https://www.ddnsto.com/api/user/routers/*****/ 请求头里面的x-csrftoken
+xcsrftoken='ZMzrq1DCB1aZuQThLsQkse1sWO6ARUc3hMd99yCbHrAJOWU23w8D6djAQNgMg8IK'
+# 先购买一次7天免费套餐 抓包查看https://www.ddnsto.com/api/user/routers/*****/ 这个url里面的*****就是userid
+userid='308850'
+
+# 企业微信推送参数
+corpid = ''
+agentid = ''
+corpsecret = ''
+touser = ''
+# 推送加 token
+plustoken = '5c1524fa76a9420db7089decc1817f55'
+
+def Push(contents):
+    # 微信推送
+    if all([corpid, agentid, corpsecret, touser]):
+        token = \
+        requests.get(f'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={corpid}&corpsecret={corpsecret}').json()[
+            'access_token']
+        json = {"touser": touser, "msgtype": "text", "agentid": agentid, "text": {"content": "ddnsto状态推送\n" + contents}}
+        resp = requests.post(f"https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={token}", json=json)
+        print('微信推送成功' if resp.json()['errmsg'] == 'ok' else '微信推送失败')
+
+    if plustoken:
+        headers = {'Content-Type': 'application/json'}
+        json = {"token": plustoken, 'title': 'ddnsto状态推送', 'content': contents.replace('\n', '<br>'), "template": "json"}
+        resp = requests.post(f'http://www.pushplus.plus/send', json=json, headers=headers).json()
+        print('push+推送成功' if resp['code'] == 200 else 'push+推送失败')
+
+# utc-beijing
+def UTC2BJS(UTC):
+    UTC_format = "%Y-%m-%dT%H:%M:%S.%fZ"
+    BJS_format = "%Y-%m-%d %H:%M:%S"
+    UTC = datetime.strptime(UTC,UTC_format)
+    #格林威治时间+8小时变为北京时间
+    BJS = UTC + timedelta(hours=8)
+    BJSJ = BJS.strftime(BJS_format)
+    return BJSJ
+
+
+#获取订单号
+uu_id = uuid.uuid4()
+suu_id = ''.join(str(uu_id).split('-'))
+url_2 = 'https://www.ddnsto.com/api/user/product/orders/'
+headers = {
+    'accept': 'application/json, text/plain, */*',
+    'accept-encoding': 'gzip, deflate, br',
+    'accept-language': 'zh-CN,zh;q=0.9',
+    'cookie': f'{cookie}',
+    'referer': 'https://www.ddnsto.com/app/',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'user-agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
+    'x-csrftoken': f'{xcsrftoken}'
+}
+data_2 = {
+    'product_id': '2',
+    'uuid_from_client': f'{suu_id}'
+}
+html_2 = requests.post(url=url_2, headers=headers,data=data_2)
+result_2 = json.loads(html_2.text)
+if len(result_2)==1:
+    message_1='cookie失效 请刚更新cookie和xcsrftoken'
+    Push(contents=message_1)
+id = result_2['id']
+
+
+# 提交订单
+url_3 = f'https://www.ddnsto.com/api/user/product/orders/{id}/'
+html_3 = requests.get(url=url_3, headers=headers).text
+
+#创建
+url_4 =f'https://www.ddnsto.com/api/user/routers/{userid}/'
+data_4 ={
+    "plan_ids_to_add":[f'{id}'],
+    "server":3
+}
+html_4 = requests.patch(url=url_4, headers=headers,data =data_4)
+result_4 = json.loads(html_4.text)
+if len(result_4['uid'])>0:
+    print('****白嫖成功*****'+'\n'+'到期时间：'+UTC2BJS(result_4['active_plan']["product_expired_at"]))
+else:
+    print('没有白嫖到！检查配置看看')
+message_2 = '****白嫖成功*****'+'\n'+'到期时间：'+UTC2BJS(result_4['active_plan']["product_expired_at"])
+Push(contents=message_2)
