@@ -1,31 +1,21 @@
 import requests, json
 
 # 城市code 自己城市的code https://fastly.jsdelivr.net/gh/Oreomeow/checkinpanel@master/city.json 这个网址查看
-city_code = ''
+# city_code = ''
 
-# 企业微信推送参数
-corpid = ''
-agentid = ''
-corpsecret = ''
-touser = ''
-# 推送加 token
-plustoken = ''
+# 青龙变量 city_code
+city_code = os.getenv("city_code").split('&')
+
+#推送加 token
+plustoken = os.getenv("plustoken")
 
 def Push(contents):
-    # 微信推送
-    if all([corpid, agentid, corpsecret, touser]):
-        token = \
-        requests.get(f'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={corpid}&corpsecret={corpsecret}').json()[
-            'access_token']
-        json = {"touser": touser, "msgtype": "text", "agentid": agentid, "text": {"content": "天气推送\n" + contents}}
-        resp = requests.post(f"https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={token}", json=json)
-        print('微信推送成功' if resp.json()['errmsg'] == 'ok' else '微信推送失败')
+  # plustoken推送
+    headers = {'Content-Type': 'application/json'}
+    json = {"token": plustoken, 'title': '天气推送', 'content': contents.replace('\n', '<br>'), "template": "json"}
+    resp = requests.post(f'http://www.pushplus.plus/send', json=json, headers=headers).json()
+    print('push+推送成功' if resp['code'] == 200 else 'push+推送失败')
 
-    if plustoken:
-        headers = {'Content-Type': 'application/json'}
-        json = {"token": plustoken, 'title': '天气推送', 'content': contents.replace('\n', '<br>'), "template": "json"}
-        resp = requests.post(f'http://www.pushplus.plus/send', json=json, headers=headers).json()
-        print('push+推送成功' if resp['code'] == 200 else 'push+推送失败')
 r = requests.get(
     f"http://t.weather.itboy.net/api/weather/city/{city_code}"
 )
