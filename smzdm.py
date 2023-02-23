@@ -1,4 +1,4 @@
-import requests, json,time,hashlib
+import requests, json,time,hashlib,os
 
 # 青龙变量 zdm_cookie
 zdm_cookie = os.getenv("zdm_cookie").split('&')
