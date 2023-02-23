@@ -1,8 +1,8 @@
-import requests, json
+import requests, json ,os
 import datetime
 
-# 配置千图网cookie
-cookie='这里填cookie'
+# 青龙变量 qtw_cookie
+qtw_cookie = os.getenv("qtw_cookie").split('&')
 
 # gettoken
 url1 = 'https://www.58pic.com/index.php?m=ajax&a=getApiToken'
@@ -12,7 +12,7 @@ headers1 = {
     'Accept-Language': 'zh-CN,zh;q=0.9',
     'Connection': 'keep-alive',
     'Content-Length': '0',
-    'Cookie': f'{cookie}',
+    'Cookie': f'{qtw_cookie}',
     'Host': 'www.58pic.com',
     'Origin': 'https://www.58pic.com',
     'Referer': 'https://www.58pic.com/',
