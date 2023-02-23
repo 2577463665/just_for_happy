@@ -1,4 +1,4 @@
-import requests, json
+import requests, json ,os
 
 # 城市code 自己城市的code https://fastly.jsdelivr.net/gh/Oreomeow/checkinpanel@master/city.json 这个网址查看
 # city_code = ''
