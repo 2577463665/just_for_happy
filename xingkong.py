@@ -1,10 +1,12 @@
-import requests, json
+import requests, json 
+import os
 
-# 配置帐号密码 可以多账号 找号密码相对应 根据实际需求增删
-username = ['','']
-password = ['','']
+# 青龙变量 xk_username xk_password
+xk_username= os.getenv("xk_username").split('&')
+xk_password = os.getenv("xk_password").split('&')
 
-for i in range(len(username)):
+
+for i in range(len(xk_username)):
     print(f'开始第{i + 1}个帐号签到')
     url = 'http://www.xkdaili.com/tools/submit_ajax.ashx?action=user_login&site_id=1'
     headers = {
@@ -21,8 +23,8 @@ for i in range(len(username)):
         'X-Requested-With': 'XMLHttpRequest',
     }
     data = {
-        'username': f'{username[i]}',
-        'password': f'{password[i]}',
+        'username': f'{xk_username[i]}',
+        'password': f'{xk_password[i]}',
         'remember': 1
     }
     response = requests.post(url=url, headers=headers, data=data,verify=False)
