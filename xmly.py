@@ -1,10 +1,7 @@
-import requests, json
+import requests, json ,os
 
-#配置喜马拉雅app登录帐号的cookie 支持多账号 cookie一行一个根据实际需求增删
-xmly_cookie = [
-    'channel=****',
-    'channel=****'
-]
+# 青龙变量 xmly_cookie
+xmly_cookie = os.getenv("xmly_cookie").split('#')
 
 for i in range(len(xmly_cookie)):
     print(f'开始第{i + 1}个帐号签到')
