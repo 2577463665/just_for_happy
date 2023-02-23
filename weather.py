@@ -4,7 +4,7 @@ import requests, json
 # city_code = ''
 
 # 青龙变量 city_code
-city_code = os.getenv("city_code").split('&')
+city_code = os.getenv("city_code")
 
 #推送加 token
 plustoken = os.getenv("plustoken")
