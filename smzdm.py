@@ -3,7 +3,7 @@ import requests, json,time,hashlib,os
 # 青龙变量 zdm_cookie
 zdm_cookie = os.getenv("zdm_cookie").split('&')
 
-for i in range(len(cookie)):
+for i in range(len(zdm_cookie)):
     print(f'开始第{i + 1}个帐号签到')
     ts =int(round(time.time() * 1000))
     url = 'https://user-api.smzdm.com/robot/token'
