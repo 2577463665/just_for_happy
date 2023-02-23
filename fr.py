@@ -1,30 +1,16 @@
-import requests, re,time,json,datetime
+import requests, re,time,json,datetime,os
 from bs4 import BeautifulSoup
 
-# 签到+摇摇乐
-# 配置帆软社区cookie 单引号里面填帆软网页的cookie就可以了
-cookie = ''
+# 帆软签到＋摇摇乐
+# 配置帆软社区cookie 单引号里面填帆软网页的cookie就可以了 fr_cookie 变量
+fr_cookie = os.getenv("fr_cookie")
 
+# pushtoken
+plustoken=os.getenv("plustoken")
 
-# 企业微信推送参数
-corpid = ''
-agentid = ''
-corpsecret = ''
-touser = ''
-# 推送加 token
-plustoken = ''
 
 def Push(contents):
-    # 微信推送
-    if all([corpid, agentid, corpsecret, touser]):
-        token = \
-        requests.get(f'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={corpid}&corpsecret={corpsecret}').json()[
-            'access_token']
-        json = {"touser": touser, "msgtype": "text", "agentid": agentid, "text": {"content": "帆软签到\n" + contents}}
-        resp = requests.post(f"https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={token}", json=json)
-        print('微信推送成功' if resp.json()['errmsg'] == 'ok' else '微信推送失败')
-
-    if plustoken:
+    #推送加
         headers = {'Content-Type': 'application/json'}
         json = {"token": plustoken, 'title': '帆软签到', 'content': contents.replace('\n', '<br>'), "template": "json"}
         resp = requests.post(f'http://www.pushplus.plus/send', json=json, headers=headers).json()
@@ -40,7 +26,7 @@ headers = {
     'accept-encoding': 'gzip, deflate, br',
     'accept-language': 'zh-CN,zh;q=0.9',
     'referer': 'https://bbs.fanruan.com/qiandao/',
-    'cookie': f'{cookie}',
+    'cookie': f'{fr_cookie}',
     'user-agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36'
 }
 response = requests.get(url=url, headers=headers).text
