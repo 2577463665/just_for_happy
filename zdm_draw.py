@@ -1,23 +1,22 @@
-import requests, demjson ,re,time,json
+import requests, demjson ,re,time,json,os
 
-# 推送不加了感觉没啥用
 # 把值得买的cookie放入下面的单引号里面  有几个帐号就弄几个（默认设置了3个 根据自己情况改）
-cookie_list = ['','','']
-# 活动id
-active_id = ['ljX8qVlEA7','OVx1anog2q']
+# 青龙变量 zdm_cookie zdm_active_id
+zdm_cookie = os.getenv("zdm_cookie").split('&')
+zdm_active_id = os.getenv("zdm_active_id").split('&')
 
 
-for i in range(len(cookie_list)):
-    for a in range(len(active_id)):
+for i in range(len(zdm_cookie)):
+    for a in range(len(zdm_active_id)):
         projectList = []
-        url = f'https://zhiyou.smzdm.com/user/lottery/jsonp_draw?active_id={active_id[a]}'
-        rewardurl= f'https://zhiyou.smzdm.com/user/lottery/jsonp_get_active_info?active_id={active_id[a]}'
+        url = f'https://zhiyou.smzdm.com/user/lottery/jsonp_draw?active_id={zdm_active_id[a]}'
+        rewardurl= f'https://zhiyou.smzdm.com/user/lottery/jsonp_get_active_info?active_id={zdm_active_id[a]}'
         infourl = 'https://zhiyou.smzdm.com/user/'
         headers = {
             'Host': 'zhiyou.smzdm.com',
             'Accept': '*/*',
             'Connection': 'keep-alive',
-            'Cookie': cookie_list[i],
+            'Cookie': zdm_cookie[i],
             'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148/smzdm 10.4.6 rv:130.1 (iPhone 13; iOS 15.6; zh_CN)/iphone_smzdmapp/10.4.6/wkwebview/jsbv_1.0.0',
             'Accept-Language': 'zh-CN,zh-Hans;q=0.9',
             'Referer': 'https://m.smzdm.com/',
