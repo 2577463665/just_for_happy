@@ -1,46 +1,32 @@
-import requests, json, re
+import requests, json, re,os
 from bs4 import BeautifulSoup as bs
 import numpy as np
 
-# 抓cookie 填到这里 多账号格式cookie = ['账号1cookie','账号2cookie']
+# #https://hdatmos.club/attendance.php
+# hdatmos_cookie=['']
+# #https://kp.m-team.cc/index.php
+# kp_m_team_cookie=['']
+# #https://pt.btschool.club/index.php
+# btschool_cookie=['']
+# #https://www.haidan.video/index.php
+# haidan_cookie=['']
 
-#https://hdatmos.club/attendance.php
-hdatmos_cookie=['']
-#https://kp.m-team.cc/index.php
-kp_m_team_cookie=['']
-#https://pt.btschool.club/index.php
-btschool_cookie=['']
-#https://www.haidan.video/index.php
-haidan_cookie=['']
+# 青龙变量 hdatmos_cookie kp_m_team_cookie btschool_cookie haidan_cookie
+hdatmos_cookie = os.getenv("hdatmos_cookie").split('&')
+kp_m_team_cookie = os.getenv("kp_m_team_cookie").split('&')
+btschool_cookie = os.getenv("btschool_cookie").split('&')
+haidan_cookie = os.getenv("haidan_cookie").split('&')
 
-# 企业微信推送参数
-corpid = ''
-agentid = ''
-corpsecret = ''
-touser = ''
-# 推送加 token
-plustoken = ''
+#推送加 token
+plustoken = os.getenv("plustoken")
 
-#
 def Push(contents):
-    # 微信推送
-    if all([corpid, agentid, corpsecret, touser]):
-        token = \
-        requests.get(f'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={corpid}&corpsecret={corpsecret}').json()[
-            'access_token']
-        json = {"touser": touser, "msgtype": "text", "agentid": agentid, "text": {"content": "pt站点签到\n" + contents}}
-        resp = requests.post(f"https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={token}", json=json)
-        print('微信推送成功' if resp.json()['errmsg'] == 'ok' else '微信推送失败')
+  # plustoken推送
+    headers = {'Content-Type': 'application/json'}
+    json = {"token": plustoken, 'title': 'PT签到', 'content': contents.replace('\n', '<br>'), "template": "json"}
+    resp = requests.post(f'http://www.pushplus.plus/send', json=json, headers=headers).json()
+    print('push+推送成功' if resp['code'] == 200 else 'push+推送失败')
 
-    if plustoken:
-        headers = {'Content-Type': 'application/json'}
-        json = {"token": plustoken, 'title': 'pt站点签到', 'content': contents.replace('\n', '<br>'), "template": "json"}
-        resp = requests.post(f'http://www.pushplus.plus/send', json=json, headers=headers).json()
-        print('push+推送成功' if resp['code'] == 200 else 'push+推送失败')
-
-# def loadtxtmethod(filename):
-#     data = np.loadtxt(filename,dtype=np.float32,delimiter=',')
-#     return data
 #hdatmos签到
 print('开始hdatmos签到')
 for i in range(len(hdatmos_cookie)):
