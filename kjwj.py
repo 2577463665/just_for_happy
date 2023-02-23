@@ -1,17 +1,11 @@
-import requests, json, re
+import requests, json, re,os
 
-# 配置用户名（一般是邮箱）
-username = [
-    'username1',
-    'username2'
-]
-# 配置用户名对应的密码 和上面的username对应上
-password = [
-    'password1',
-    'password2'
-]
 
-for i in range(len(username)):
+# 青龙变量 kjwj_username 配置用户名（一般是邮箱）  kjwj_password 配置用户名对应的密码 和上面的username对应上 多账号&隔开
+kjwj_username = os.getenv("kjwj_username").split('&')
+kjwj_password = os.getenv("kjwj_password").split('&')
+
+for i in range(len(kjwj_username)):
     url = 'https://www.kejiwanjia.com/wp-json/jwt-auth/v1/token'
     headers = {
         'user-agent': 'Mozilla/5.0 (Windows NT 6.3; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/86.0.4240.198 Safari/537.36',
@@ -19,8 +13,8 @@ for i in range(len(username)):
         'referer': 'https://www.kejiwanjia.com/'
     }
     data = {
-        'username': f'{username[i]}',
-        'password': f'{password[i]}'
+        'username': f'{kjwj_username[i]}',
+        'password': f'{kjwj_password[i]}'
     }
     html = requests.post(url=url, headers=headers, data=data)
     result = json.loads(html.text)
