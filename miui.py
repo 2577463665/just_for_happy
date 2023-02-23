@@ -1,14 +1,19 @@
-import requests, json ,time,base64,binascii,hashlib
+import requests, json ,time,base64,binascii,hashlib,os
 
-# 小米签到
+# 小米签到 小米社区任务得成长值
 # 配置帐号密码 一一对应 按需增删 不对上会出错 若帐号密码填写没有错误 还是报错应该是账号在非常用设备上登录, 需要验证码, 使用该设备安装图形化工具后自行前去验证https://web-alpha.vip.miui.com/page/info/mio/mio/internalTest 图形化工具怎么安装可参考https://cloud.tencent.com/developer/article/2069955
-account =['帐号1','帐号2','账号3']
-password =['密码1','密码2','密码3']
+# account =['帐号1','帐号2','账号3']
+# password =['密码1','密码2','密码3']
+
+# 青龙变量 mi_account mi_password
+mi_account = os.getenv("mi_account").split('&')
+mi_password = os.getenv("mi_password").split('&')
+
 
 # 获取cookie
-def Phone(account, password):
+def Phone(mi_account, mi_password):
     md5 = hashlib.md5()
-    md5.update(password.encode())
+    md5.update(mi_password.encode())
     Hash = md5.hexdigest()
     url = "https://account.xiaomi.com/pass/serviceLoginAuth2"
     headers = {
@@ -26,7 +31,7 @@ def Phone(account, password):
         "qs": "%3F_json%3Dtrue%26sid%3Dmiui_vip%26_locale%3Dzh_CN",
         "callback": "https://api.vip.miui.com/sts",
         "_json": "true",
-        "user": account,
+        "user": mi_account,
         "hash": Hash.upper(),
         "sid": "miui_vip",
         "_sign": "ZJxpm3Q5cu0qDOMkKdWYRPeCwps%3D",
@@ -50,8 +55,8 @@ def Phone(account, password):
     return requests.utils.dict_from_cookiejar(sts.cookies)
 
 #签到任务
-for i in range(len(account)):
-    cookie = str(Phone(f'{account[i]}', f'{password[i]}')).replace('{','').replace('}','').replace(',',';').replace(': ','=').replace('\'','').replace(' ','')
+for i in range(len(mi_account)):
+    cookie = str(Phone(f'{mi_account[i]}', f'{mi_password[i]}')).replace('{','').replace('}','').replace(',',';').replace(': ','=').replace('\'','').replace(' ','')
     url = 'https://api.vip.miui.com/mtop/planet/vip/user/checkin'
     headers = {
         'Host': 'api.vip.miui.com',
