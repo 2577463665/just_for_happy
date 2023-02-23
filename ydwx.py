@@ -7,7 +7,7 @@ import os
 # ydwx_deviceParams=['deviceParams1','deviceParams2']
 # ydwx_token =['token1','token2']
 
-# 青龙变量
+# 青龙变量 ydwx_deviceParams ydwx_token
 ydwx_deviceParams = os.getenv("ydwx_deviceParams").split('&')
 ydwx_token = os.getenv("ydwx_token").split('&')
 
