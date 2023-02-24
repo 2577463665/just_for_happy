@@ -51,27 +51,32 @@ data_2 = {
 }
 html_2 = requests.post(url=url_2, headers=headers,data=data_2)
 result_2 = json.loads(html_2.text)
+print(result_2['application-error'])
 if len(result_2)==1:
     message_1='cookie失效 请刚更新cookie和xcsrftoken'
     Push(contents=message_1)
-id = result_2['id']
-
-
-# 提交订单
-url_3 = f'https://www.ddnsto.com/api/user/product/orders/{id}/'
-html_3 = requests.get(url=url_3, headers=headers).text
-
-#创建
-url_4 =f'https://www.ddnsto.com/api/user/routers/{ddns_userid}/'
-data_4 ={
-    "plan_ids_to_add":[f'{id}'],
-    "server":3
-}
-html_4 = requests.patch(url=url_4, headers=headers,data =data_4)
-result_4 = json.loads(html_4.text)
-if len(result_4['uid'])>0:
-    print('****白嫖成功*****'+'\n'+'到期时间：'+UTC2BJS(result_4['active_plan']["product_expired_at"]))
+elif result_2['application-error']=='超出本周免费套餐购买次数':
+    print(result_2['application-error'])
+    message_3=result_2['application-error']
+    Push(contents=message_3)
 else:
-    print('没有白嫖到！检查配置看看')
-message_2 = '****白嫖成功*****'+'\n'+'到期时间：'+UTC2BJS(result_4['active_plan']["product_expired_at"])
-Push(contents=message_2)
+    id = result_2['id']
+    print(id)
+    # 提交订单
+    url_3 = f'https://www.ddnsto.com/api/user/product/orders/{id}/'
+    html_3 = requests.get(url=url_3, headers=headers).text
+
+    #创建
+    url_4 =f'https://www.ddnsto.com/api/user/routers/{ddns_userid}/'
+    data_4 ={
+        "plan_ids_to_add":[f'{id}'],
+        "server":3
+    }
+    html_4 = requests.patch(url=url_4, headers=headers,data =data_4)
+    result_4 = json.loads(html_4.text)
+    if len(result_4['uid'])>0:
+        print('****白嫖成功*****'+'\n'+'到期时间：'+UTC2BJS(result_4['active_plan']["product_expired_at"]))
+    else:
+        print('没有白嫖到！检查配置看看')
+    message_2 = '****白嫖成功*****'+'\n'+'到期时间：'+UTC2BJS(result_4['active_plan']["product_expired_at"])
+    Push(contents=message_2)
