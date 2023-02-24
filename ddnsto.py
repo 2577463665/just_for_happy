@@ -5,7 +5,7 @@ from datetime import timedelta
 ddns_cookie = os.getenv("ddns_cookie")
 xcsrftoken=re.findall('csrftoken=(.*?);', ddns_cookie, re.S)[0]
 # 先购买一次7天免费套餐 抓包查看https://www.ddnsto.com/api/user/routers/*****/ 这个url里面的*****就是userid
-ddns_userid='308850'
+ddns_userid=os.getenv("ddns_userid")
 
 # pushtoken
 plustoken=os.getenv("plustoken")
@@ -51,11 +51,7 @@ data_2 = {
 }
 html_2 = requests.post(url=url_2, headers=headers,data=data_2)
 result_2 = json.loads(html_2.text)
-print(result_2['application-error'])
-if len(result_2)==1:
-    message_1='cookie失效 请刚更新cookie和xcsrftoken'
-    Push(contents=message_1)
-elif result_2['application-error']=='超出本周免费套餐购买次数':
+if result_2['application-error']=='超出本周免费套餐购买次数':
     print(result_2['application-error'])
     message_3=result_2['application-error']
     Push(contents=message_3)
