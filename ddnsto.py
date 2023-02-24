@@ -14,7 +14,7 @@ plustoken=os.getenv("plustoken")
 def Push(contents):
     #推送加
         headers = {'Content-Type': 'application/json'}
-        json = {"token": plustoken, 'title': '帆软签到', 'content': contents.replace('\n', '<br>'), "template": "json"}
+        json = {"token": plustoken, 'title': 'DDNS', 'content': contents.replace('\n', '<br>'), "template": "json"}
         resp = requests.post(f'http://www.pushplus.plus/send', json=json, headers=headers).json()
         print('push+推送成功' if resp['code'] == 200 else 'push+推送失败')
         
