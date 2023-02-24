@@ -1,38 +1,23 @@
-import requests, json,uuid,datetime
-from datetime import datetime
+import requests, json,uuid,datetime,re,os
 from datetime import timedelta
 
 # 配置参数 登录https://www.ddnsto.com/app/#/devices 抓包cookie
-cookie=''
-# 先购买一次7天免费套餐 抓包查看https://www.ddnsto.com/api/user/routers/*****/ 请求头里面的x-csrftoken
-xcsrftoken=''
+ddns_cookie = os.getenv("ddns_cookie")
+xcsrftoken=re.findall('csrftoken=(.*?);', ddns_cookie, re.S)[0]
 # 先购买一次7天免费套餐 抓包查看https://www.ddnsto.com/api/user/routers/*****/ 这个url里面的*****就是userid
-userid='308850'
+ddns_userid='308850'
 
-# 企业微信推送参数
-corpid = ''
-agentid = ''
-corpsecret = ''
-touser = ''
-# 推送加 token
-plustoken = '5c1524fa76a9420db7089decc1817f55'
+# pushtoken
+plustoken=os.getenv("plustoken")
+
 
 def Push(contents):
-    # 微信推送
-    if all([corpid, agentid, corpsecret, touser]):
-        token = \
-        requests.get(f'https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid={corpid}&corpsecret={corpsecret}').json()[
-            'access_token']
-        json = {"touser": touser, "msgtype": "text", "agentid": agentid, "text": {"content": "ddnsto状态推送\n" + contents}}
-        resp = requests.post(f"https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token={token}", json=json)
-        print('微信推送成功' if resp.json()['errmsg'] == 'ok' else '微信推送失败')
-
-    if plustoken:
+    #推送加
         headers = {'Content-Type': 'application/json'}
-        json = {"token": plustoken, 'title': 'ddnsto状态推送', 'content': contents.replace('\n', '<br>'), "template": "json"}
+        json = {"token": plustoken, 'title': '帆软签到', 'content': contents.replace('\n', '<br>'), "template": "json"}
         resp = requests.post(f'http://www.pushplus.plus/send', json=json, headers=headers).json()
         print('push+推送成功' if resp['code'] == 200 else 'push+推送失败')
-
+        
 # utc-beijing
 def UTC2BJS(UTC):
     UTC_format = "%Y-%m-%dT%H:%M:%S.%fZ"
@@ -52,7 +37,7 @@ headers = {
     'accept': 'application/json, text/plain, */*',
     'accept-encoding': 'gzip, deflate, br',
     'accept-language': 'zh-CN,zh;q=0.9',
-    'cookie': f'{cookie}',
+    'cookie': f'{ddns_cookie}',
     'referer': 'https://www.ddnsto.com/app/',
     'sec-fetch-dest': 'empty',
     'sec-fetch-mode': 'cors',
@@ -77,7 +62,7 @@ url_3 = f'https://www.ddnsto.com/api/user/product/orders/{id}/'
 html_3 = requests.get(url=url_3, headers=headers).text
 
 #创建
-url_4 =f'https://www.ddnsto.com/api/user/routers/{userid}/'
+url_4 =f'https://www.ddnsto.com/api/user/routers/{ddns_userid}/'
 data_4 ={
     "plan_ids_to_add":[f'{id}'],
     "server":3
