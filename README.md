@@ -30,7 +30,7 @@ ql repo https://ghproxy.com/https://github.com/wd210010/just_for_happy.git "" "b
 
 - [x] 交流
 
-企鹅交流群 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=ONL0HlPcYXZ02Evw89STPtEHe-6YPa-E&jump_from=webapi&authKey=p/l8KOlojfCDISWXs5Cv/90Cl+yUMEarxoPTgOFATEpWYPzhIoQthCPZ0W2IFq4S"><img border="0" src="https://gd-hbimg.huaban.com/15f216e814d46b63649efc21d23b2f80aaa7b36321de3-AmH6k0_fw658webp" alt="py交流群" title="py交流群"></a>
+企鹅交流群 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=ONL0HlPcYXZ02Evw89STPtEHe-6YPa-E&jump_from=webapi&authKey=p/l8KOlojfCDISWXs5Cv/90Cl+yUMEarxoPTgOFATEpWYPzhIoQthCPZ0W2IFq4S"><img border="0" src="https://img.tukuppt.com/png_preview/00/40/12/mbJ6HJWIde.jpg!/fw/780" alt="py交流群" title="py交流群"></a>
 电报频道<a href="https://t.me/wd210010_1"><img alt="Telegram" src="https://img.shields.io/badge/chat-telegram-blue.svg?logo=telegram&style=flat-square"/></a> 
 交流群 [![Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=0088cc)](https://t.me/+XSi9N-Nf3cFhODJl)
 
