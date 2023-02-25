@@ -22,10 +22,8 @@ ql repo https://ghproxy.com/https://github.com/wd210010/just_for_happy.git "" "b
 
 
 企鹅交流群 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=ONL0HlPcYXZ02Evw89STPtEHe-6YPa-E&jump_from=webapi&authKey=p/l8KOlojfCDISWXs5Cv/90Cl+yUMEarxoPTgOFATEpWYPzhIoQthCPZ0W2IFq4S"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="py交流群" title="py交流群"></a>
-
-电报频道<a href="https://t.me/wd210010_1"><img alt="Telegram" src="https://img.shields.io/badge/chat-telegram-blue.svg?logo=telegram&style=flat-square"/></a> 
-
-交流群 [![Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=0088cc)](https://t.me/+XSi9N-Nf3cFhODJl)
+     电报频道<a href="https://t.me/wd210010_1"><img alt="Telegram" src="https://img.shields.io/badge/chat-telegram-blue.svg?logo=telegram&style=flat-square"/></a> 
+     交流群 [![Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=0088cc)](https://t.me/+XSi9N-Nf3cFhODJl)
 
 #部署的其他大佬的签到站支持挺多签到 
 
