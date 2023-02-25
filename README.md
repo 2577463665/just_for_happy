@@ -23,11 +23,10 @@ ql repo https://ghproxy.com/https://github.com/wd210010/just_for_happy.git "" "b
 ```
 
 
-- [x] 签到站
+- [x] 部署的其他大佬的签到站
   
-部署的其他大佬的签到站支持挺多签到 
-地址：http://krystal033.tk/my/ 可以看看有没有自己需要的签到
-如果想自己部署可以参考大佬项目 https://github.com/qiandao-today/qiandao
+签到站地址：http://krystal033.tk/my/ 
+大佬项目地址： https://github.com/qiandao-today/qiandao
 
 
 - [x] 交流
