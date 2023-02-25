@@ -22,12 +22,11 @@ ql repo https://ghproxy.com/https://github.com/wd210010/just_for_happy.git "" "b
 
 
 - [x] 签到站
- 
-``` 
+  
 部署的其他大佬的签到站支持挺多签到 
 地址：http://krystal033.tk/my/ 可以看看有没有自己需要的签到
 如果想自己部署可以参考大佬项目 https://github.com/qiandao-today/qiandao
-```
+
 
 - [x] 交流
 
@@ -46,6 +45,6 @@ ql repo https://ghproxy.com/https://github.com/wd210010/just_for_happy.git "" "b
 ![未命名1673402622](https://user-images.githubusercontent.com/76995206/211700923-39913716-be27-4c26-8831-5dca15ecefc2.png)
 
 
-- [x] 赞赏码 Star History
+- [x] Star History
 
 [![Stargazers over time](https://starchart.cc/wd210010/just_for_happy.svg)](https://starchart.cc/wd210010/just_for_happy)
