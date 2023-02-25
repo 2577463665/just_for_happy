@@ -42,7 +42,10 @@ ql repo https://ghproxy.com/https://github.com/wd210010/just_for_happy.git "" "b
 - [x] 赞赏码
  
 ![未命名1673402622](https://user-images.githubusercontent.com/76995206/211700923-39913716-be27-4c26-8831-5dca15ecefc2.png)
-![](http://profile-counter.glitch.me/passerby-b/count.svg)
+
+- [x] 访问量
+
+![](http://profile-counter.glitch.me/wd210010/count.svg)
 
 - [x] Star History
 
