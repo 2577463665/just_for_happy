@@ -22,6 +22,7 @@ ql repo https://ghproxy.com/https://github.com/wd210010/just_for_happy.git "" "b
 
 
 - [x] 签到站
+- [ ] 
 ``` 
 部署的其他大佬的签到站支持挺多签到 
 地址：http://krystal033.tk/my/ 可以看看有没有自己需要的签到
@@ -35,14 +36,16 @@ ql repo https://ghproxy.com/https://github.com/wd210010/just_for_happy.git "" "b
 交流群 [![Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=0088cc)](https://t.me/+XSi9N-Nf3cFhODJl)
 
 
-# 东东自动挂机上车地址 
+- [x] 东东挂机上车
+ 
 地址：http://jdflxfd.tk/login 
 
 
-# 赞赏码 觉得帮助到你了 可以赞赏点哈哈
+- [x] 赞赏码
+ 
 ![未命名1673402622](https://user-images.githubusercontent.com/76995206/211700923-39913716-be27-4c26-8831-5dca15ecefc2.png)
 
 
-## Star History
+- [x] 赞赏码 Star History
 
 [![Stargazers over time](https://starchart.cc/wd210010/just_for_happy.svg)](https://starchart.cc/wd210010/just_for_happy)
