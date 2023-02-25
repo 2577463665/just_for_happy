@@ -24,8 +24,7 @@ ql repo https://ghproxy.com/https://github.com/wd210010/just_for_happy.git "" "b
 ```
 
 
-企鹅交流群
-点击链接加入群聊【wd210010】：https://jq.qq.com/?_wv=1027&k=fe5yh5XB
+企鹅交流群 <a target="_blank" href="https://qm.qq.com/cgi-bin/qm/qr?k=ONL0HlPcYXZ02Evw89STPtEHe-6YPa-E&jump_from=webapi&authKey=p/l8KOlojfCDISWXs5Cv/90Cl+yUMEarxoPTgOFATEpWYPzhIoQthCPZ0W2IFq4S"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="py交流群" title="py交流群"></a>
 
 电报频道 https://t.me/wd210010_1 交流群 https://t.me/+XSi9N-Nf3cFhODJl
 
