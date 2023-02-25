@@ -13,10 +13,12 @@
 
 - [x] 青龙拉库
 
-```
 国外机子
+```
 ql repo https://github.com/wd210010/just_for_happy.git "" "backup" "" ""
+```
 国内机子
+```
 ql repo https://ghproxy.com/https://github.com/wd210010/just_for_happy.git "" "backup" "" ""
 ```
 
