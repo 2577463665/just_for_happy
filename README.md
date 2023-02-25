@@ -25,11 +25,12 @@ ql repo https://ghproxy.com/https://github.com/wd210010/just_for_happy.git "" "b
      电报频道<a href="https://t.me/wd210010_1"><img alt="Telegram" src="https://img.shields.io/badge/chat-telegram-blue.svg?logo=telegram&style=flat-square"/></a> 
      交流群 [![Telegram](https://img.shields.io/static/v1?label=Telegram&message=Chat&color=0088cc)](https://t.me/+XSi9N-Nf3cFhODJl)
 
-#部署的其他大佬的签到站支持挺多签到 
-
+- [x] 签到站
+``` 
+部署的其他大佬的签到站支持挺多签到 
 地址：http://krystal033.tk/my/ 可以看看有没有自己需要的签到
-
 如果想自己部署可以参考大佬项目 https://github.com/qiandao-today/qiandao
+```
 
 # 东东自动挂机上车地址 
 地址：http://jdflxfd.tk/login 
