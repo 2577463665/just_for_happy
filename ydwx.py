@@ -1,3 +1,12 @@
+#!/usr/bin/python3
+# -- coding: utf-8 --
+# -------------------------------
+# @Author : github@wd210010 https://github.com/wd210010/just_for_happy
+# @Time : 2023/2/27 13:23
+# -------------------------------
+# cron "6,10,15 * * *" script-path=xxx.py,tag=匹配cron用
+# const $ = new Env('一点万象签到')
+
 import requests,time,hashlib,json
 import os
 
