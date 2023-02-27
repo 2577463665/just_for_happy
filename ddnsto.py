@@ -1,8 +1,8 @@
 #!/usr/bin/python3
 # -- coding: utf-8 --
 # -------------------------------
-# @Author : github@limoruirui https://github.com/limoruirui
-# @Time : 2022/8/10 13:23
+# @Author : github@wd210010 https://github.com/wd210010/just_for_happy
+# @Time : 2023/2/27 13:23
 # -------------------------------
 # cron "30 9 * * *" script-path=xxx.py,tag=匹配cron用
 # const $ = new Env('ddnsto七天续费');
