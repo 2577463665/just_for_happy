@@ -1,3 +1,12 @@
+#!/usr/bin/python3
+# -- coding: utf-8 --
+# -------------------------------
+# @Author : github@wd210010 https://github.com/wd210010/just_for_happy
+# @Time : 2023/2/27 13:23
+# -------------------------------
+# cron "30 0 * * *" script-path=xxx.py,tag=匹配cron用
+# const $ = new Env('什么值得买签到')
+
 import requests, json,time,hashlib,os
 
 # 青龙变量 zdm_cookie
