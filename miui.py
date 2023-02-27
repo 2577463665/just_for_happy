@@ -1,3 +1,12 @@
+#!/usr/bin/python3
+# -- coding: utf-8 --
+# -------------------------------
+# @Author : github@wd210010 https://github.com/wd210010/just_for_happy
+# @Time : 2023/2/27 13:23
+# -------------------------------
+# cron "30 8,10,15 * * *" script-path=xxx.py,tag=匹配cron用
+# const $ = new Env('小米社区任务得成长值')
+
 import requests, json ,time,base64,binascii,hashlib,os
 
 # 小米签到 小米社区任务得成长值
