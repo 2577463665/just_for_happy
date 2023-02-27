@@ -1,3 +1,12 @@
+#!/usr/bin/python3
+# -- coding: utf-8 --
+# -------------------------------
+# @Author : github@limoruirui https://github.com/limoruirui
+# @Time : 2022/8/10 13:23
+# -------------------------------
+# cron "30 9 * * *" script-path=xxx.py,tag=匹配cron用
+# const $ = new Env('ddnsto七天续费');
+
 import requests, json,uuid,datetime,re,os
 from datetime import timedelta
 
