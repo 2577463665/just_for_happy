@@ -1,4 +1,12 @@
-# -*- coding: utf8 -*-
+#!/usr/bin/python3
+# -- coding: utf-8 --
+# -------------------------------
+# @Time : 2023/2/27 13:23
+# -------------------------------
+# cron "30 7,10 * * *" script-path=xxx.py,tag=匹配cron用
+# const $ = new Env('爱奇艺签到')
+
+
 import requests, random, string, hashlib, time, json
 from json import dumps
 
