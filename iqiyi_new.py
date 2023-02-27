@@ -4,6 +4,9 @@
 # @Author : github@limoruirui https://github.com/limoruirui
 # @Time : 5/5/2022 20:09
 # -------------------------------
+# cron "30 7,10 * * *" script-path=xxx.py,tag=匹配cron用
+# const $ = new Env('爱奇艺签到加刷时长')
+
 """
 1.爱奇艺每日任务脚本 请低调使用 请不要用于商业牟利 一天一次 请自行斟酌设置crontab
 2.cookie获取方式
