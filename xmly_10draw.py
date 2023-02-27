@@ -1,3 +1,12 @@
+#!/usr/bin/python3
+# -- coding: utf-8 --
+# -------------------------------
+# @Author : github@wd210010 https://github.com/wd210010/just_for_happy
+# @Time : 2023/2/27 13:23
+# -------------------------------
+# cron "6 * * *" script-path=xxx.py,tag=匹配cron用
+# const $ = new Env('喜马拉雅转盘抽奖')
+
 import requests, json, time ,os
 
 # 写的是喜马拉雅每日十连抽 十连抽一次抓包https://m.ximalaya.com/x-web-activity/draw/activity/drawTenAction这个域名的cookie
