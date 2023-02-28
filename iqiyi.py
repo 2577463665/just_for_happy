@@ -7,13 +7,13 @@
 # const $ = new Env('爱奇艺签到')
 
 
-import requests, random, string, hashlib, time, json
+import requests, random, string, hashlib, time, json,os
 from json import dumps
 
-#爱奇艺cookie  分别提取
-P00001=""
-P00003=""
-dfp=""#只要‘字符串‘，删除’@数字@数字’
+#爱奇艺cookie
+P00001 = os.getenv("P00001")
+P00003 = os.getenv("P00003")
+dfp = os.getenv("dfp")
 
 
 # 任务列表
