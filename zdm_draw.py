@@ -12,8 +12,8 @@ import requests, demjson ,re,time,json,os
 # 把值得买的cookie放入下面的单引号里面  有几个帐号就弄几个（默认设置了3个 根据自己情况改）
 # 青龙变量 zdm_cookie zdm_active_id
 zdm_cookie = os.getenv("zdm_cookie").split('&')
-zdm_active_id = os.getenv("zdm_active_id").split('&')
 
+zdm_active_id=['ljX8qVlEA7']
 
 for i in range(len(zdm_cookie)):
     for a in range(len(zdm_active_id)):
