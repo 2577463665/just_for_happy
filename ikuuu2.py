@@ -29,7 +29,7 @@ def sign_in(email, passwd):
         resp = requests.session()
         resp.post(f'https://ikuuu.eu/auth/login', headers=headers, data=body)
         ss = resp.post(f'https://ikuuu.eu/user/checkin').json()
-        print(ss)
+#         print(ss)
         if 'msg' in ss:
             print(ss['msg'])
     except:
