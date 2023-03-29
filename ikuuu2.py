@@ -36,7 +36,7 @@ def sign_in(email, passwd):
         print('请检查帐号配置是否错误')
 def ql_env():
     if "ikuuu" in os.environ:
-        token_list = os.environ['ikuu'].split('#')
+        token_list = os.environ['ikuuu'].split('#')
         if len(token_list) > 0:
             return token_list
         else:
