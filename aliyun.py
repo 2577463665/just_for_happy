@@ -9,6 +9,7 @@ import json
 import  requests
 import  os
 
+#变量export ali_refresh_token=''
 # refresh_token是一成不变的呢，我们使用它来更新签到需要的access_token
 #refresh_token获取教程：https://github.com/bighammer-link/Common-scripts/wiki/%E9%98%BF%E9%87%8C%E4%BA%91%E7%9B%98refresh_token%E8%8E%B7%E5%8F%96%E6%96%B9%E6%B3%95
 ali_refresh_token = os.getenv("ali_refresh_token")
