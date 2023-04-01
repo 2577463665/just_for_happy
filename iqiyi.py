@@ -15,37 +15,21 @@ P00001 = os.getenv("P00001")
 P00003 = os.getenv("P00003")
 dfp = os.getenv("dfp")
 
+# 推送加
+plustoken = os.getenv("plustoken")
+
+
+#推送函数
+def Push(contents):
+    # 推送加
+    headers = {'Content-Type': 'application/json'}
+    json = {"token": plustoken, 'title': '爱奇艺签到', 'content': contents.replace('\n', '<br>'), "template": "json"}
+    resp = requests.post(f'http://www.pushplus.plus/send', json=json, headers=headers).json()
+    print('push+推送成功' if resp['code'] == 200 else 'push+推送失败')
+
 
 # 任务列表
 tasks = []
-
-# 企业微信
-def get_access_token():
-    urls = base_url + 'corpid=' + corpid + '&corpsecret=' + corpsecret
-    resp = requests.get(urls).json()
-    access_token = resp['access_token']
-    return access_token
-
-def run(msg):
-    data = {
-        "touser": touser,
-        "toparty": toparty,
-        "totag": totag,
-        "msgtype": "text",
-        "agentid": agentid,
-        "text": {
-            "content": msg
-            },
-        "safe": 0,
-        "enable_id_trans": 0,
-        "enable_duplicate_check": 0,
-        "duplicate_check_interval": 1800
-    }
-    data = json.dumps(data)
-    req_urls = req_url + get_access_token()
-    resp = requests.post(url=req_urls, data=data).text
-    print(resp)
-    return resp
 
 
 # 随机字符串 a-z A-Z 0-9
@@ -328,7 +312,7 @@ def main():
     print(logbuf)
     log.append(logbuf)
     print("***END***")
-    run("\n".join(log))       #推送到微信
+    Push(contents="\n".join(log))       #推送到微信
     return (title)
 
 
