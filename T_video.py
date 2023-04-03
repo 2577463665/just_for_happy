@@ -16,7 +16,7 @@ import time,os
 # export tencent_vqq_appid=''
 # export tencent_vqq_openid=''
 # export tencent_vqq_access_token=''
-# export tencent_main_login='qq'
+# export tencent_main_login='qq' 默认就是qq两个字母 不要瞎改成QQ号
 
 tencent_vdevice_qimei36 = os.getenv("tencent_vdevice_qimei36")
 tencent_vqq_appid = os.getenv("tencent_vqq_appid")
