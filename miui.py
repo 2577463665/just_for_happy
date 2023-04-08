@@ -66,9 +66,7 @@ def Phone(account, password):
 #签到任务
 for i in range(len(mi_account)):
     cookie = str(Phone(f'{mi_account[i]}', f'{mi_password[i]}')).replace('{','').replace('}','').replace(',',';').replace(': ','=').replace('\'','').replace(' ','')
-    print(cookie)
     miui_vip_ph = "".join(re.findall('miui_vip_ph=(.*?);', cookie, re.S))
-    print(miui_vip_ph)
     url = 'https://api.vip.miui.com/mtop/planet/vip/user/checkin?pathname=/mio/checkIn&version=dev.1144'
     headers = {
         'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
