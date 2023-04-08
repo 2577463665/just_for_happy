@@ -28,6 +28,7 @@ def Push(contents):
 
 #签到函数
 for i in range(len(ali_refresh_token)):
+    print(f'开始帐号{i+1}签到')
     def daily_check(access_token):
         url = 'https://member.aliyundrive.com/v1/activity/sign_in_list'
         headers = {
