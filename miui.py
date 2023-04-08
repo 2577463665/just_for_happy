@@ -7,7 +7,7 @@
 # cron "30 8,10,15 * * *" script-path=xxx.py,tag=匹配cron用
 # const $ = new Env('小米社区任务得成长值')
 
-import requests, json ,time,base64,binascii,hashlib,os
+import requests, json ,time,base64,binascii,hashlib,os,re
 
 # 小米签到 小米社区任务得成长值
 # 配置帐号密码 一一对应 按需增删 不对上会出错 若帐号密码填写没有错误 还是报错应该是账号在非常用设备上登录, 需要验证码, 使用该设备安装图形化工具后自行前去验证https://web-alpha.vip.miui.com/page/info/mio/mio/internalTest 图形化工具怎么安装可参考https://cloud.tencent.com/developer/article/2069955
@@ -18,7 +18,7 @@ import requests, json ,time,base64,binascii,hashlib,os
 mi_account = os.getenv("mi_account").split('&')
 mi_password = os.getenv("mi_password").split('&')
 
-
+# {'time': 0, 'message': 'success', 'entity': 6, 'status': 200}
 # 获取cookie
 def Phone(account, password):
     md5 = hashlib.md5()
@@ -66,31 +66,27 @@ def Phone(account, password):
 #签到任务
 for i in range(len(mi_account)):
     cookie = str(Phone(f'{mi_account[i]}', f'{mi_password[i]}')).replace('{','').replace('}','').replace(',',';').replace(': ','=').replace('\'','').replace(' ','')
-    url = 'https://api.vip.miui.com/mtop/planet/vip/user/checkin'
+    print(cookie)
+    miui_vip_ph = "".join(re.findall('miui_vip_ph=(.*?);', cookie, re.S))
+    print(miui_vip_ph)
+    url = 'https://api.vip.miui.com/mtop/planet/vip/user/checkin?pathname=/mio/checkIn&version=dev.1144'
     headers = {
-        'Host': 'api.vip.miui.com',
-        'Connection': 'keep-alive',
-        'User-Agent': 'Mozilla/5.0 (Linux; U; Android 10; zh-cn; M2007J1SC Build/RKQ1.200826.002) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/89.0.4389.116 Mobile Safari/537.36 XiaoMi/MiuiBrowser/15.7.22 app/vipaccount',
-        'Accept': '*/*',
-        'Origin': 'https://web.vip.miui.com',
-        'X-Requested-With': 'com.xiaomi.vipaccount',
-        'Sec-Fetch-Site': 'same-site',
-        'Sec-Fetch-Mode': 'cors',
-        'Sec-Fetch-Dest': 'empty',
-        'Referer': 'https://web.vip.miui.com/page/info/mio/mio/checkIn?app_version=dev.220804',
-        'Accept-Encoding': 'gzip, deflate',
-        'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+        'Content-Type': 'application/x-www-form-urlencoded;charset=utf-8',
         'Cookie': f'{cookie}'
     }
     user_url = 'https://api.vip.miui.com/api/community/user/home/page'
-    html = requests.get(url=url, headers=headers)
+    params = {
+            'miui_vip_ph': miui_vip_ph
+    }
+    html = requests.get(url=url, headers=headers,params=params)
     html_user = requests.get(url=user_url, headers=headers)
     result = json.loads(html.text)
     result_user = json.loads(html_user.text)
     userId = result_user['entity']['userId']
     print('*************'+'\n'+f'开始第{i + 1}个账号签到'+'\n'+'签到结果：')
+    print(result['message'])
     print('userId: '+userId + ' 用户名: '+result_user['entity']['userName']+ ' 段位: '+ result_user['entity']['userGrowLevelInfo']['showLevel'])
-    print(result)
+
 # 点赞任务
     print('开始加入点赞任务>>>>')
     for a in range(2):
@@ -154,5 +150,3 @@ for i in range(len(mi_account)):
             print('浏览帖子成功，获得积分： ' + str(result_watch['entity']['score']))
         else:
             print(result_watch['message'] + '，今日已达上限')
-
-    time.sleep(60)
