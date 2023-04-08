@@ -20,9 +20,9 @@ mi_password = os.getenv("mi_password").split('&')
 
 
 # 获取cookie
-def Phone(mi_account, mi_password):
+def Phone(account, password):
     md5 = hashlib.md5()
-    md5.update(mi_password.encode())
+    md5.update(password.encode())
     Hash = md5.hexdigest()
     url = "https://account.xiaomi.com/pass/serviceLoginAuth2"
     headers = {
@@ -40,7 +40,7 @@ def Phone(mi_account, mi_password):
         "qs": "%3F_json%3Dtrue%26sid%3Dmiui_vip%26_locale%3Dzh_CN",
         "callback": "https://api.vip.miui.com/sts",
         "_json": "true",
-        "user": mi_account,
+        "user": account,
         "hash": Hash.upper(),
         "sid": "miui_vip",
         "_sign": "ZJxpm3Q5cu0qDOMkKdWYRPeCwps%3D",
