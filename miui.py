@@ -6,20 +6,19 @@
 # -------------------------------
 # cron "30 8,10,15 * * *" script-path=xxx.py,tag=匹配cron用
 # const $ = new Env('小米社区任务得成长值')
+# 4.11 更新了请求后获取cookie失败的问题 基本一次性就可以跑完 不用多跑几次
 
 import requests, json ,time,base64,binascii,hashlib,os,re
 
 # 小米签到 小米社区任务得成长值
 # 配置帐号密码 一一对应 按需增删 不对上会出错 若帐号密码填写没有错误 还是报错应该是账号在非常用设备上登录, 需要验证码, 使用该设备安装图形化工具后自行前去验证https://web-alpha.vip.miui.com/page/info/mio/mio/internalTest 图形化工具怎么安装可参考https://cloud.tencent.com/developer/article/2069955
-# account =['帐号1','帐号2','账号3']
-# password =['密码1','密码2','密码3']
+# 青龙变量export mi_account='' export mi_password=''
 
 # 青龙变量 mi_account mi_password
 mi_account = os.getenv("mi_account").split('&')
 mi_password = os.getenv("mi_password").split('&')
 
-# {'time': 0, 'message': 'success', 'entity': 6, 'status': 200}
-# 获取cookie
+#获取cookie
 def Phone(account, password):
     md5 = hashlib.md5()
     md5.update(password.encode())
@@ -46,9 +45,9 @@ def Phone(account, password):
         "_sign": "ZJxpm3Q5cu0qDOMkKdWYRPeCwps%3D",
         "_locale": "zh_CN"
     }
-    Auth = requests.post(url=url, headers=headers,
+    Auth1 = requests.post(url=url, headers=headers,
                          data=data).text.replace("&&&START&&&", "")
-    Auth = json.loads(Auth)
+    Auth = json.loads(Auth1)
     ssecurity = Auth["ssecurity"]
     nonce = Auth["nonce"]
     sha1 = hashlib.sha1()
@@ -60,12 +59,17 @@ def Phone(account, password):
     nurl = Auth[
         "location"] + "&_userIdNeedEncrypt=true&clientSign=" + clientSign
 
-    sts = requests.get(url=nurl)
-    return requests.utils.dict_from_cookiejar(sts.cookies)
+    resp = requests.get(url=nurl)
+    return requests.utils.dict_from_cookiejar(resp.cookies)
 
-#签到任务
+
+
 for i in range(len(mi_account)):
-    cookie = str(Phone(f'{mi_account[i]}', f'{mi_password[i]}')).replace('{','').replace('}','').replace(',',';').replace(': ','=').replace('\'','').replace(' ','')
+    for k in range(10):
+        a = Phone(mi_account[i], mi_password[i])
+        if len(a) > 0:
+            c_list.append(a)
+    cookie = str(c_list[-1]).replace('{','').replace('}','').replace(',',';').replace(': ','=').replace('\'','').replace(' ','')
     miui_vip_ph = "".join(re.findall('miui_vip_ph=(.*?);', cookie, re.S))
     url = 'https://api.vip.miui.com/mtop/planet/vip/user/checkin?pathname=/mio/checkIn&version=dev.1144'
     headers = {
