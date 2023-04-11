@@ -65,6 +65,7 @@ def Phone(account, password):
 
 
 for i in range(len(mi_account)):
+    c_list = []
     for k in range(10):
         a = Phone(mi_account[i], mi_password[i])
         if len(a) > 0:
