@@ -44,7 +44,7 @@ ql repo https://ghproxy.com/https://github.com/wd210010/just_for_happy.git "" "b
 
 ### 东东挂机上车
 
-地址：http://jdflxfd.tk/login 
+地址：http://jdflxfd.tk 
 
 
 ### 赞赏码
