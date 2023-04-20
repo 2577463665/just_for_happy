@@ -103,9 +103,9 @@ for i in range(len(qmzxbody)):
     for aa in range(len(data_6)) :
         print(str(data_6[aa]['materialName'])+': '+str(data_6[aa]['haveCount'])+'/1')
         if str(data_6[aa]['materialName'])=="紧致卡" and data_6[aa]['haveCount'] ==1:
-            massage1 ='可能集齐了去看看！！！'
+            massage1 =str(data_1['data']['phoneNumber']) +'可能集齐了去看看！！！'
             Push(contents=massage1)
         elif str(data_6[aa]['materialName'])=="全能卡" and data_6[aa]['haveCount'] ==1:
-            massage2 ='可能集齐了去看看！！！'
+            massage2 =str(data_1['data']['phoneNumber']) +'可能集齐了去看看！！！'
             Push(contents=massage2)
     print('*****')
