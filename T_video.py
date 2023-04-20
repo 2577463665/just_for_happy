@@ -11,7 +11,7 @@ import json
 import time,os
 
 
-#抓取腾讯视频会员界面的cookie里面的项目 设置环境变量 只能完成部分任务 还有不是所有帐号都能签到成功因为有的帐号会触发滑块认证或者短信验证 设置定时早上6点前比较好
+#抓取腾讯视频会员app（不是网页）界面的cookie里面的项目 设置环境变量 只能完成部分任务 还有不是所有帐号都能签到成功因为有的帐号会触发滑块认证或者短信验证 设置定时早上6点前比较好
 # export tencent_vdevice_qimei36=''
 # export tencent_vqq_appid=''
 # export tencent_vqq_openid=''
