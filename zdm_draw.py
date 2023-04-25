@@ -13,7 +13,7 @@ import requests, demjson ,re,time,json,os
 # 青龙变量 zdm_cookie zdm_active_id
 zdm_cookie = os.getenv("zdm_cookie").split('&')
 
-zdm_active_id=['ljX8qVlEA7','A6X1veWE2O']
+zdm_active_id=['ljX8qVlEA7','A6X1veWE2O','deyg20WEar']
 
 for i in range(len(zdm_cookie)):
     for a in range(len(zdm_active_id)):
