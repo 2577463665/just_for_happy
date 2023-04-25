@@ -14,6 +14,7 @@ import requests, demjson ,re,time,json,os
 zdm_cookie = os.getenv("zdm_cookie").split('&')
 
 zdm_active_id=['ljX8qVlEA7','A6X1veWE2O','deyg20WEar']
+Current_date = str(datetime. now(). date())[:7]
 
 for i in range(len(zdm_cookie)):
     for a in range(len(zdm_active_id)):
