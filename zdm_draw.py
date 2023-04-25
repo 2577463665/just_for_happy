@@ -8,6 +8,7 @@
 # const $ = new Env('值得买每日转盘签到')
 
 import requests, demjson ,re,time,json,os
+from datetime import datetime
 
 # 把值得买的cookie放入下面的单引号里面  有几个帐号就弄几个（默认设置了3个 根据自己情况改）
 # 青龙变量 zdm_cookie zdm_active_id
