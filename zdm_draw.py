@@ -40,5 +40,27 @@ for i in range(len(zdm_cookie)):
         gold = str(re.findall('<div class="assets-part assets-gold">\n                    (.*?)</span>', str(response_info), re.S)).replace('[','').replace(']','').replace('\'’','').replace('<span class="assets-part-element assets-num">','').replace('\'','')
         silver = str(re.findall('<div class="assets-part assets-prestige">\n                    (.*?)</span>', str(response_info), re.S)).replace('[','').replace(']','').replace('\'’','').replace('<span class="assets-part-element assets-num">','').replace('\'','')
         data = demjson.decode(str(response), encoding='utf-8')
-        print('帐号' + str(i + 1)+ ' VIP'+ level + ' ' + name + ' ' + data['error_msg']+'  剩余碎银 '+silver +'  剩余金币 '+ gold)
-        time.sleep(2)
+        a = []
+        for j in range(1, 12):
+            url2 = f'https://zhiyou.m.smzdm.com/user/exp/ajax_log?page={j}'
+            headers2 = {
+                'Host': 'zhiyou.m.smzdm.com',
+                'Accept': 'application/json, text/plain, */*',
+                'Connection': 'keep-alive',
+                'Cookie': zdm_cookie[i],
+                'User-Agent': 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_6 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148/smzdm 10.4.40 rv:137.6 (iPhone 13; iOS 15.6; zh_CN)/iphone_smzdmapp/10.4.40/wkwebview/jsbv_1.0.0',
+                'Accept-Language': 'zh-CN,zh-Hans;q=0.9',
+                'Referer': 'https://zhiyou.m.smzdm.com/user/exp/',
+                'Accept-Encoding': 'gzip, deflate, br'
+            }
+            resp = requests.get(url=url2, headers=headers2)
+            result = json.loads(resp.text)['data']['rows']
+
+            for k in range(len(result)):
+                a_date = str(result[k]['creation_date'])[:7]
+
+                if a_date == Current_date:
+                    b = result[k]['add_exp']
+                    a.append(b)
+        print('帐号' + str(i + 1) + ' VIP' + level + ' ' + name + ' ' + data[
+            'error_msg'] + '  剩余碎银 ' + silver + '  剩余金币 ' + gold + '  本月获得经验：' + str(sum(a)))
