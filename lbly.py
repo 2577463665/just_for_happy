@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 # -- coding: utf-8 --
-# @Time : 2023/4/26 14:23
+# @Time : 2023/4/26 14:22
 # -------------------------------
 # cron "30 5,7 * * *" script-path=xxx.py,tag=匹配cron用
 # const $ = new Env('丽宝乐园小程序签到');
