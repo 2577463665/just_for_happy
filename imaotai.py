@@ -111,11 +111,14 @@ def login (O0000OOOOOOO0O0O0 ,OOOO00O0OO0OO00OO ,O0O0O0OO0000OOOO0 ):#line:195
     O000OOO0OO0O0O000 =OO0O00O00OO0O000O .get ('cookie')#line:233
     print (O0O0O0OO0000OOOO0 ,OOO00O000O0O00O00 ,O000OOO0OO0O0O000 )#line:234
     return O0O0O0OO0000OOOO0 ,OOO00O000O0O00O00 ,O000OOO0OO0O0O000 #line:235
-def Push (OOO00O0OOO00OOOO0 ):#line:237
-    O00OO000000OO0OO0 ={'Content-Type':'application/json'}#line:239
-    OOOO00OOO00OOO0O0 ={"token":plustoken ,'title':'茅台预约推送','content':OOO00O0OOO00OOOO0 .replace ('\n','<br>'),"template":"json"}#line:240
-    OOOOO000O00O0O00O =requests .post (f'http://www.pushplus.plus/send',json =OOOO00OOO00OOO0O0 ,headers =O00OO000000OO0OO0 ).json ()#line:241
-    print ('push+推送成功'if OOOOO000O00O0O00O ['code']==200 else 'push+推送失败')#line:242
+
+def Push(contents):
+  # plustoken推送
+    headers = {'Content-Type': 'application/json'}
+    json = {"token": plustoken, 'title': '茅台预约推送', 'content': contents.replace('\n', '<br>'), "template": "json"}
+    resp = requests.post(f'http://www.pushplus.plus/send', json=json, headers=headers).json()
+    print('push+推送成功' if resp['code'] == 200 else 'push+推送失败')
+    
 if __name__ =='__main__':#line:245
     plustoken =os .getenv ("plustoken")#line:246
     mt_tokens =os .getenv ("MTTokenD")#line:247
