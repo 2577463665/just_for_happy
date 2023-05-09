@@ -153,3 +153,14 @@ for i in range(len(mi_account)):
             print('浏览帖子成功，获得积分： ' + str(result_watch['entity']['score']))
         else:
             print(result_watch['message'] + '，今日已达上限')
+#拔萝卜
+    carroturl ='https://api.vip.miui.com/api/carrot/pull'
+    resp_carrot = requests.post(url=carroturl, headers=headers,params=params)
+    r_json = resp_carrot.json()
+    if r_json['code'] == 401:
+        print("社区拔萝卜失败：Cookie无效")
+    elif r_json['code'] != 200:
+        print("社区拔萝卜失败：" + str(r_json['entity']['message']))
+    print("社区拔萝卜结果：" + str(r_json['entity']['message']))
+    money_count = r_json['entity']['header']['moneyCount']
+    print("当前金币数：" + str(money_count))
